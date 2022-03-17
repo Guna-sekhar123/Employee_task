@@ -1,11 +1,7 @@
 package com.em.dao;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,16 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/SignupDao")
 public class SignupDao extends HttpServlet {
-	String sql = "select * from login where Employee_Id=? and password=?";
 	String url = "jdbc:mysql://localhost:3306/gunasekhar_111915084";
 	String username = "root";
 	String password = "Gunasekhar@1432#";
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection(url,username,password);
-	Statement stmt=(Statement) con.createStatement();
-    String q1="select * from emp_details where uname="+uname+" and pass="+pass+";";
-    ResultSet rs=((java.sql.Statement) stmt).executeQuery(q1);
-    response.sendRedirect("login.jsp");
-    con.close();
-
+	public boolean check(String id,String pass,String fname) throws SQLException{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url,username,password);
+		String q1 = "insert into employee_details values(?,?,?,?,?,?,?,?)";
+		ps = con.prepareStatement(q1);
+		ps.setString(1,id);    
+        ps.setString(2,pass);
+        ps.setString(3,fname);
+        ps.setString(4,lname);
+        ps.setString(5,dob);
+        ps.setString(6,contact);
+        ps.setString(7,ms);
+        ps.setString(8,ys);
+		ResultSet rs=  ps.executeUpdate();
+		if(rs.next()) {
+			return true;
+		}
+		return false;
+	}
 }

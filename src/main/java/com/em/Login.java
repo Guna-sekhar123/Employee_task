@@ -1,25 +1,19 @@
 package com.em;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.io.*;
 
-import com.login.dao.LoginDao;
+import com.em.dao.LoginDao;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	protected <HttpServletRequest> void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uname = request.getParameter("uname");
+		String eid = request.getParameter("eid");
 		String pass = request.getParameter("pass");
 		LoginDao dao = new LoginDao();
-		if(dao.check(uname, pass)) {
+		if(dao.check(eid, pass)) {
 			HttpSession session = request.getSession();
-			session.setAttribute("username", uname);
-			response.sendRedirect("Welcome.jsp");
+			session.setAttribute("Employee_Id", eid);
+			response.sendRedirect("report.jsp");
 		}
 		else {
 			response.sendRedirect("Login.jsp");

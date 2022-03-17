@@ -1,11 +1,7 @@
 package com.em.dao;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/LoginDao")
 public class LoginDao extends HttpServlet {
-	String sql = "select * from login where Employee_Id=? and password=?";
+	String sql = "select * from employee_details where Employee_Id=? and password=?";
 	String url = "jdbc:mysql://localhost:3306/gunasekhar_111915084";
 	String username = "root";
 	String password = "Gunasekhar@1432#";
