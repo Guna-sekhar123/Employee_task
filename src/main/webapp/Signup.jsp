@@ -13,6 +13,9 @@
 		Enter Last_name: <input type="text" name="lname"><br>
 		Enter Date of Birth: <input type="date" name="dob"><br>
 		Enter Contact_number: <input type="number" name="cnum"><br>
+		Enter Job_role : <input type="text" name = "jr"><br>
+		Enter monthly_salary : <input type="number" name="ms"><br>
+		Enter Yearly bonus : <input type = "number" name="yb"><br>
 		<input type="submit" value="Signup">
 	</form>
 </body>
